@@ -1,0 +1,22 @@
+{
+    "name": "kasik/vksdk",
+    "description": "Library for working to VK Api",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Gaydarly",
+            "email": "aibolit.service@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "VKSdk\\": "src/"
+        }
+    }
+}
