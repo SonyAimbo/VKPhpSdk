@@ -1,7 +1,12 @@
 <?php
 
+// https://github.com/KRypt0nn/VKAPI
+// https://github.com/slmatthew/senses-engine/blob/master/docs/helpers/template.md
+// https://github.com/VKCOM/vk-php-sdk
+
 require_once __DIR__ . '/vendor/autoload.php';
 
+use VKSdk\Core\Callback\VKBot;
 use VKSdk\VKApi;
 use VKSdk\Core\Callback\Server\VKCallback;
 
@@ -18,6 +23,11 @@ class CallbackBot extends VKCallback {
 
     public function messageNew(int $group_id, string $text, array $data) {
         var_dump($text);
+    }
+
+    public function wallPostNew(int $group_id, array $data){
+        var_dump($data);
+        VKBot::sayOk();
     }
 
 }
