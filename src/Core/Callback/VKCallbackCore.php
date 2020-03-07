@@ -76,6 +76,7 @@ abstract class VKCallbackCore {
         } else {
             VKBot::sayOk();
         }
+
     }
 
 }
