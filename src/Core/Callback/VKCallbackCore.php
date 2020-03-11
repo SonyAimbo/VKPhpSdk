@@ -74,9 +74,32 @@ abstract class VKCallbackCore {
         if(method_exists(get_called_class(), $func)) {
             call_user_func_array(array($this, $func), array($json['group_id'], $json));
         } else {
-            VKBot::sayOk();
+            $this->ok();
         }
+    }
 
+    public function ok() {
+        set_time_limit(0);
+        ini_set('display_errors', 'Off');
+
+        // Nginx
+        if (is_callable('fastcgi_finish_request')) {
+            session_write_close();
+            fastcgi_finish_request();
+            return True;
+        }
+        // Apache
+        ignore_user_abort(true);
+
+        ob_start();
+        header("HTTP/1.1 200 OK");
+        header('Content-Encoding: none');
+        header('Content-Length: 2');
+        header('Connection: close');
+        echo 'ok';
+        ob_end_flush();
+        flush();
+        return True;
     }
 
 }

@@ -56,7 +56,6 @@ class HttpClient {
         }
 
         curl_setopt_array($ch, $this->curl_init + $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
         $response['response'] = curl_exec($ch);
         $response['response_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -68,7 +67,7 @@ class HttpClient {
             $error_msg = "Failed CURL Request. Error: {$error_code}";
             $error_msg .= $error ?? "";
 
-            throw new HttpException($error_msg, $error_code);
+            throw new HttpException($error_msg);
         }
 
         return new HttpResponse($response);
